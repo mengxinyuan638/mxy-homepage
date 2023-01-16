@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>萌新源的个人主页</title>
+    <link rel="shortcut icon" href="./res/img/mxy.png" type="image/x-icon">
+    <link rel="stylesheet" href="./iconfont/font/iconfont.css">
+    <link rel="stylesheet" href="./res/layui/css/layui.css">
+    <link rel="stylesheet" href="./res/css/animated.css">
+</head>
+<style>
+    @font-face {
+        font-family: wenkai;
+        src: url(./res/font/wenkai.ttf);
+    }
+
+    .font-wenkai {
+        font-family: wenkai;
+    }
+
+    .card {
+        background-color: rgba(255, 255, 255, 0.65);
+        border-radius: 15px;
+        padding: 30px;
+        margin: 0 auto;
+    }
+
+    .link-card {
+        width: 255px;
+        height: 90px;
+        background-color: rgba(255, 255, 255);
+        border-radius: 15px;
+        display: inline-block;
+        margin-top: 15px;
+        margin-left: 10px;
+        padding: 15px;
+        transition: all .3s ease-in-out;
+    }
+
+    .link-card:hover {
+        box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .25);
+        transition: all .2s ease-in-out;
+    }
+
+
+    .link-msg {
+        display: inline-block;
+        margin-left: 25px;
+    }
+
+    /* 灯笼容器 */
+    .lantern-con-left {
+        position: fixed;
+        left: 160px;
+    }
+
+    .lantern-con-right {
+        position: fixed;
+        right: 160px;
+    }
+
+    .lantern-phone-left {
+        position: fixed;
+        left: 1px;
+    }
+
+    .lantern-phone-right {
+        position: fixed;
+        right: 1px;
+    }
+
+    /* 灯笼中间红色区域 */
+    .lantern-light {
+        position: relative;
+        width: 120px;
+        height: 90px;
+        background-color: red;
+        margin: 30px;
+        border-radius: 50%;
+        box-shadow: -5px 5px 50px 4px #fa6c00;
+        /* 设置旋转点 */
+        transform-origin: top center;
+        animation: swing 3s infinite ease-in-out;
+    }
+
+    /* 灯笼顶部和底部的样式 */
+    .lantern-light::before,
+    .lantern-light::after {
+        content: '';
+        position: absolute;
+        border: 1px solid #dc8f03;
+        width: 60px;
+        height: 12px;
+        /* 背景渐变 */
+        background: linear-gradient(to right,
+                #dc8f03,
+                #ffa500,
+                #dc8f03,
+                #ffa500,
+                #dc8f03);
+        left: 30px;
+    }
+
+    /* 顶部位置 */
+    .lantern-light::before {
+        top: -7px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    /* 底部位置 */
+    .lantern-light::after {
+        bottom: -7px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    /* 提着灯笼的线的样式 */
+    .lantern-line {
+        width: 2px;
+        height: 50px;
+        background-color: #dc8f03;
+        position: absolute;
+        left: 88px;
+    }
+
+    /* 灯笼的动画效果 */
+    @keyframes swing {
+        0% {
+            transform: rotate(-6deg);
+        }
+
+        50% {
+            transform: rotate(6deg);
+        }
+
+        100% {
+            transform: rotate(-6deg);
+        }
+    }
+
+    /* 灯笼中间的线条 */
+    .lantern-circle,
+    .lantern-rect {
+        height: 90px;
+        border-radius: 50%;
+        border: 2px solid #dc8f03;
+        background-color: rgba(216, 0, 15, 0.1);
+    }
+
+    /* 外层 */
+    .lantern-circle {
+        width: 100px;
+        margin: 12px 8px 8px 10px;
+    }
+
+    /* 内层 */
+    .lantern-rect {
+        margin: -2px 8px 8px 26px;
+        width: 45px;
+    }
+
+    /* 文字样式 */
+    .lantern-text {
+        font-size: 28px;
+        font-weight: bold;
+        text-align: center;
+        color: #dc8f03;
+        margin-top: 4px;
+    }
+
+    /* 灯穗 */
+    .lantern-tassel-top {
+        width: 5px;
+        height: 20px;
+        background-color: #ffa500;
+        border-radius: 0 0 5px 5px;
+        position: relative;
+        margin: -5px 0 0 59px;
+        /* 让灯穗也有一个动画效果 */
+        animation: swing 3s infinite ease-in-out;
+    }
+
+    .lantern-tassel-middle,
+    .lantern-tassel-bottom {
+        position: absolute;
+        width: 10px;
+        left: -2px;
+    }
+
+    .lantern-tassel-middle {
+        border-radius: 50%;
+        top: 14px;
+        height: 10px;
+        background-color: #dc8f03;
+        z-index: 2;
+    }
+
+    .lantern-tassel-bottom {
+        background-color: #ffa500;
+        border-bottom-left-radius: 5px;
+        height: 35px;
+        top: 18px;
+        z-index: 1;
+    }
+
+    .footer-a {
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 40px;
+        margin-bottom: 15px;
+    }
+
+    .footer-div {
+        background-color: rgb(255, 255, 255);
+        padding: 20px;
+        border-radius: 6px;
+        text-align: center;
+    }
+
+    .background {
+        background-image: url("./res/img/background.jpg");
+        background-size: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+</style>
+
+<body class="background">
+
+    <div style="margin-top: 30px;">
+        <div id="left">
+            <!-- 提着灯笼的线 -->
+            <div class="lantern-line"></div>
+            <!-- 灯笼主要区域 -->
+            <div class="lantern-light">
+                <!-- 灯笼中间的线条 -->
+                <div class="lantern-circle">
+                    <div class="lantern-rect">
+                        <!-- 灯笼中间的文字内容 -->
+                        <div class="lantern-text">欢迎</div>
+                    </div>
+                </div>
+                <div class="lantern-tassel-top">
+                    <div class="lantern-tassel-middle"></div>
+                    <div class="lantern-tassel-bottom"></div>
+                </div>
+            </div>
+        </div>
+        <div id="right">
+            <!-- 提着灯笼的线 -->
+            <div class="lantern-line"></div>
+            <!-- 灯笼主要区域 -->
+            <div class="lantern-light">
+                <!-- 灯笼中间的线条 -->
+                <div class="lantern-circle">
+                    <div class="lantern-rect">
+                        <!-- 灯笼中间的文字内容 -->
+                        <div class="lantern-text">大家</div>
+                    </div>
+                </div>
+                <div class="lantern-tassel-top">
+                    <div class="lantern-tassel-middle"></div>
+                    <div class="lantern-tassel-bottom"></div>
+                </div>
+            </div>
+        </div>
+        <div class="animated fadeInDown" style="text-align: center;">
+            <img src="./res/img/mxy.png" alt="萌新源" id="main-img">
+        </div>
+        <div style="text-align: center;" class="animated fadeInLeftBig">
+            <h1 class="font-wenkai" style="color: white;" id="title">萌新源的个人主页</h1>
+        </div>
+        <div class="card animated lightSpeedIn" id="list-card">
+            <a href="https://github.com/mengxinyuan638" target="_blank">
+                <div class="link-card">
+                    <span class="iconfont icon-GitHub" style="font-size: 70px;"></span>
+                    <div class="link-msg">
+                        <h1>Github</h1>
+                        <p>我的github主页</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://gitee.com/meng-xinyuan-mxy" target="_blank">
+                <div class="link-card">
+                    <span class="iconfont icon-gitee" style="font-size: 70px;"></span>
+                    <div class="link-msg">
+                        <h1>Gitee</h1>
+                        <p>我的gitee主页</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://api.juncikeji.xyz/" target="_blank">
+                <div class="link-card">
+                    <span class="iconfont icon-APIjiekou" style="font-size: 70px;"></span>
+                    <div class="link-msg">
+                        <h1>萌新源API</h1>
+                        <p>免费开放的api接口平台</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://blog.juncikeji.xyz/" target="_blank">
+                <div class="link-card">
+                    <span class="iconfont icon-blog" style="font-size: 70px;"></span>
+                    <div class="link-msg">
+                        <h1>个人博客</h1>
+                        <p>普通高中生一枚</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://qm.qq.com/cgi-bin/qm/qr?k=Rgb5qno8i455DQVnOBfnDP0AsTXOOzBk&noverify=0&personal_qrcode_source=3"
+                target="_blank">
+                <div class="link-card">
+                    <span class="iconfont icon-QQ" style="font-size: 70px;"></span>
+                    <div class="link-msg">
+                        <h1>我的QQ</h1>
+                        <p>1648576390</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://qm.qq.com/cgi-bin/qm/qr?k=fhpHswsgbnSpZ-GI01lTCP56pSzzIWWa&authKey=C0wxxZUC9fn3rAQVB+iOL7drFRI2MGSzxKuJ18811M1j5GNr9LQggeLkMYQ8/5tk&noverify=0&personal_qrcode_source=0"
+                target="_blank">
+                <div class="link-card">
+                    <span class="iconfont icon-qunzu" style="font-size: 70px;"></span>
+                    <div class="link-msg">
+                        <h1>QQ交流群</h1>
+                        <p>934541995</p>
+                    </div>
+                </div>
+            </a>
+            <a href="#">
+                <div class="link-card">
+                    <span class="iconfont icon-wodeyouxiang" style="font-size: 70px;"></span>
+                    <div class="link-msg">
+                        <h1>我的邮箱</h1>
+                        <p>1648576390@qq.com</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <footer class="footer-a animated flipInX" id="footer">
+        <div class="footer-div">
+            <div style="margin:0 auto; padding:20px 0;">
+                <a target="_blank" href="http://beian.miit.gov.cn/"
+                    style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
+                    <img src="icp.png" style="float:left;" width=“20px” height="20px" />
+                    <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">
+                        闽ICP备号</p>
+                </a>
+                <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35052102000385"
+                    style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
+                    <img src="beian.png" style="float:left;" />
+                    <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">闽公网安备
+                        号</p>
+                </a>
+            </div>
+            <div>
+                <p>©2021-2023 萌新源 Powered by Mxy-homepage</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./res/layui/layui.js"></script>
+    <script>
+        layui.use(['layer', 'form'], function () {
+            var layer = layui.layer;
+            var $ = layui.jquery;
+
+            var width = $(window).width()
+            var height = $(window).height()
+
+            if (width < 900) {
+                $("#title").css("font-size", "45px");
+                $("#main-img").css("width", "120px");
+                $("#list-card").css("width", "290px");
+                $("#footer").css("width", "90%");
+                $("#right").addClass("lantern-phone-right");
+                $("#left").addClass("lantern-phone-left");
+            } else {
+                $("#title").css("font-size", "85px");
+                $("#main-img").css("width", "190px");
+                $("#list-card").css("width", "900px");
+                $("#footer").css("width", "50%");
+                $("#right").addClass("lantern-con-right");
+                $("#left").addClass("lantern-con-left");
+            }
+
+            layer.msg("欢迎来到我的主页")
+        });
+    </script>
+</body>
+
+</html>
