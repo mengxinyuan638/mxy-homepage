@@ -1,15 +1,15 @@
 <p align="center">
-  <a href="https://v2.nonebot.dev/"><img src="https://zsy.juncikeji.xyz/i/img/mxy.png" width="150" height="150" alt="API管理系统"></a>
+  <a href="https://v2.nonebot.dev/"><img src="https://zsy.mxycn.cn/i/img/mxy.png" width="150" height="150" alt="API管理系统"></a>
 </p>
 <div align="center">
     <h1 align="center">✨萌新源主页</h1>
 </div>
 <p align="center">
-<a style="margin-inline:5px" target="_blank" href="http://blog.juncikeji.xyz/">
+<a style="margin-inline:5px" target="_blank" href="http://blog.mxycn.cn/">
 	<img src="https://img.shields.io/badge/Blog-个人博客-FDE6E0?style=flat&logo=Blogger" title="萌新源的小窝">
 </a>
 <!-- 萌新源API -->
-<a style="margin-inline:5px" target="_blank" href="https://api.juncikeji.xyz/">
+<a style="margin-inline:5px" target="_blank" href="https://api.mxycn.cn/">
 	<img src="https://img.shields.io/badge/API-萌新源-blue?style=flat&logo=PHP" title="萌新源API">
 </a>
 <!-- CSDN博客 -->
